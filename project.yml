@@ -1,0 +1,25 @@
+name: wikiApp
+options:
+  bundleIdPrefix: turtleAge.wikiApp
+  developmentLanguage: ja
+settings:
+  ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+targets:
+  PUSH:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.1"
+    sources: wikiApp
+    base:
+        TARGETED_DEVICE_FAMILY: 1
+        INFOPLIST_FILE: PUSH/Info.plist
+        OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
+    configs:
+        Debug:
+          PRODUCT_BUNDLE_IDENTIFIER: com.wikiApp.debug
+        Alpha:
+          PRODUCT_BUNDLE_IDENTIFIER: com.wikiApp.alpha
+        Beta:
+          PRODUCT_BUNDLE_IDENTIFIER: com.wikiApp.beta
+        Release:
+          PRODUCT_BUNDLE_IDENTIFIER: com.wikiApp
