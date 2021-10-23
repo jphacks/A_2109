@@ -5,7 +5,7 @@ options:
 settings:
   ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 targets:
-  PUSH:
+  wikiApp:
     type: application
     platform: iOS
     deploymentTarget: "14.1"
