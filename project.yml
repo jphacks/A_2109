@@ -12,7 +12,7 @@ targets:
     sources: wikiApp
     base:
         TARGETED_DEVICE_FAMILY: 1
-        INFOPLIST_FILE: PUSH/Info.plist
+        INFOPLIST_FILE: wikiApp/Info.plist
         OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
     configs:
         Debug:
