@@ -1,8 +1,8 @@
 //
 //  Persistence.swift
-//  wikiApp
+//  WikiApp
 //
-//  Created by tiking on 2021/10/23.
+//  Created by tiking on 2021/10/26.
 //
 
 import CoreData
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "wikiApp")
+        container = NSPersistentContainer(name: "WikiApp")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

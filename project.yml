@@ -1,18 +1,18 @@
-name: wikiApp
+name: WikiApp
 options:
-  bundleIdPrefix: turtleAge.wikiApp
+  bundleIdPrefix: turtleAge
   developmentLanguage: ja
 settings:
   ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 targets:
-  wikiApp:
+  WikiApp:
     type: application
     platform: iOS
     deploymentTarget: "14.1"
-    sources: wikiApp
+    sources: WikiApp
     base:
         TARGETED_DEVICE_FAMILY: 1
-        INFOPLIST_FILE: wikiApp/Info.plist
+        INFOPLIST_FILE: WikiApp/Info.plist
         OTHER_LDFLAGS: $(inherited) $(OTHER_LDFLAGS) -ObjC
     configs:
         Debug:
