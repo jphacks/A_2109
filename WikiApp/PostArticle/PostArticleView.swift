@@ -8,14 +8,9 @@
 import SwiftUI
 
 struct PostArtticleView: View {
-    @State var name = "";
-    var body: some View {
-        NavigationView{
+    @State private var name = "";var body: some View {NavigationView{
             
-                TextField("記事内容をここに投稿", text: $name)
-                .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .topLeading)
-                .navigationTitle("記事投稿")
-                .navigationBarTitleDisplayMode(.inline)
+                TextField("記事内容をここに投稿", text: $name).frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .topLeading).navigationTitle("記事投稿").navigationBarTitleDisplayMode(.inline)
             
                 .toolbar{
                     ToolbarItem(placement: .navigationBarTrailing){
@@ -30,10 +25,3 @@ struct PostArtticleView: View {
     }
 }
 
-/*
- struct PostArticleView_Previews: PreviewProvider {
-    static var previews: some View{
-        PostArtticleView()
-    }
-}
-*/
