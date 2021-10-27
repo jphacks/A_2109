@@ -7,6 +7,7 @@ extension UIColor {
     static let formBackground = UIColor(red: 240 / 255, green: 243 / 255, blue: 249 / 255, alpha: 1)
     static let formText = UIColor(red: 188 / 255, green: 202 / 255, blue: 210 / 255, alpha: 1)
     static let nonLogin = UIColor(red: 188 / 255, green: 202 / 255, blue: 210 / 255, alpha: 1)
+    static let text = UIColor(red: 132 / 255, green: 149 / 255, blue: 158 / 255, alpha: 1)
 }
 
 extension Color {
@@ -16,4 +17,5 @@ extension Color {
     static let formBackground = Color(UIColor.formBackground)
     static let formText = Color(UIColor.formText)
     static let nonLogin = Color(UIColor.nonLogin)
+    static let text = Color(UIColor.text)
 }

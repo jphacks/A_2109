@@ -1,13 +1,15 @@
 //
-//  LoginViewModel.swift
+//  SignInViewModel.swift
 //  WikiApp
 //
-//  Created by tiking on 2021/10/27.
+//  Created by tiking on 2021/10/28.
 //
+
 import Foundation
 import Combine
 
-final class LoginViewModel: ObservableObject {
+final class SignInViewModel: ObservableObject {
+    @Published var userName = ""
     @Published var mail = ""
     @Published var password = ""
     @Published var readyToCreate = false
@@ -18,19 +20,21 @@ final class LoginViewModel: ObservableObject {
     private var anyCancellable = Set<AnyCancellable>()
     
     init() {
-        $mail
-            .combineLatest($password)
+        $userName
+            .combineLatest($mail, $password)
             .map {
-                let mail = $0.0
-                let password = $0.1
+                let userName = $0.0
+                let mail = $0.1
+                let password = $0.2
                 
-                guard mail.count > 0, (password.count != 0) else { return false}
+                guard userName.count > 0, mail.count > 0, (password.count != 0) else { return false}
                 return true
             }
             .assign(to: \.readyToCreate, on: self)
             .store(in: &anyCancellable)
     }
     
+    // TODO: fix SignIn Logic
     func login() {
         LoginClient(mail: mail, password: password).login()
             .handleEvents(receiveSubscription: { [weak self] _ in
@@ -52,3 +56,4 @@ final class LoginViewModel: ObservableObject {
             ).store(in: &anyCancellable)
     }
 }
+

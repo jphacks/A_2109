@@ -1,32 +1,34 @@
 //
-//  LoginView.swift
+//  SiginInView.swift
 //  WikiApp
 //
-//  Created by tiking on 2021/10/26.
+//  Created by tiking on 2021/10/28.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct SignInView: View {
     
-    @StateObject private var viewModel = LoginViewModel()
+    @StateObject private var viewModel = SignInViewModel()
+    @State private var isPreviewLogin = false
     
     var body: some View {
         ZStack(alignment: .center) {
             Color.background.ignoresSafeArea()
             
-            VStack(alignment: .center, spacing: 40) {
+            VStack(alignment: .center, spacing: 24) {
                 
-                Text("Login")
+                Text("Welcome!")
                     .font(.system(size: 32, weight: .semibold, design: .default))
                     .foregroundColor(.black)
                 
-                VerticalSpacer(height: 16)
+                VerticalSpacer(height: 32)
                 
+                CommonTextField(text: $viewModel.userName, placeholder: "Name")
                 CommonTextField(text: $viewModel.mail, placeholder: "mail")
                 CommonTextField(text: $viewModel.password, placeholder: "password")
                 
-                VerticalSpacer(height: 32)
+                VerticalSpacer(height: 48)
                 
                 CommonButton(title: "Login", action: viewModel.login, color: viewModel.readyToCreate ? .primary : .nonLogin)
                     .padding(.top, 32)
@@ -34,11 +36,15 @@ struct LoginView: View {
                     .fullScreenCover(isPresented: $viewModel.stateObject, onDismiss: nil) {
                         Text("test")
                     }
+                
+                Button(action: { isPreviewLogin.toggle() }) {
+                    Text("ログインはこちら")
+                        .foregroundColor(.text)
+                }
+                .fullScreenCover(isPresented: $isPreviewLogin, onDismiss: nil) {
+                    LoginView()
+                }
             }
         }
-    }
-    func action() {
-        print(self.viewModel.password)
-        print(self.viewModel.mail)
     }
 }
