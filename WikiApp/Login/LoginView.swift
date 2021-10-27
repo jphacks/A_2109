@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack(alignment: .center) {
             Color.background.ignoresSafeArea()
-            VStack(alignment: .leading, spacing: 0) {
-                
+            VStack(alignment: .center, spacing: 0) {
+                Text("test")
             }
         }
     }
