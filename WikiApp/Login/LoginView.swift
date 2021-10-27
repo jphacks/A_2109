@@ -28,9 +28,12 @@ struct LoginView: View {
                 
                 VerticalSpacer(height: 32)
                 
-                CommonButton(title: "Login", action: action, color: viewModel.readyToCreate ? .primary : .nonLogin)
+                CommonButton(title: "Login", action: viewModel.login, color: viewModel.readyToCreate ? .primary : .nonLogin)
                     .padding(.top, 32)
                     .disabled(!viewModel.readyToCreate)
+                    .fullScreenCover(isPresented: $viewModel.stateObject, onDismiss: nil) {
+                        Text("test")
+                    }
             }
         }
     }
