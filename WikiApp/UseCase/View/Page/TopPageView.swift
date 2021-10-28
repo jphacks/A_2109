@@ -11,6 +11,7 @@ struct TopPageView: View {
     var body: some View {
         NavigationView {
             TopView()
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Home")
         }
     }

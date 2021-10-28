@@ -28,7 +28,7 @@ enum SFSymbol: String {
     case house
     
     /// 􀈎
-    case pencil = "square.and.pencil"
+    case edit = "square.and.pencil"
     
     /// 􀣋
     case gear = "gearshape"
