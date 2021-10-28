@@ -16,13 +16,12 @@ struct PostArticleView: View {
                     .resizable()
                     .frame(width: 32, height: 32)
                     .cornerRadius(20)
+                    .padding(16)
                     
                 TextEditor(text: $name)
-                    .frame(width: 340, height: 750)
+                    .padding(.vertical)
             }
-            .navigationTitle("記事投稿")
-            .navigationBarTitleDisplayMode(.inline)
-            
+           
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {}) {
