@@ -16,10 +16,8 @@ struct PostArticleView: View {
                     .resizable()
                     .frame(width: 32, height: 32)
                     .cornerRadius(20)
-                    .padding(16)
                     
                 TextEditor(text: $name)
-                    .padding(.vertical)
             }
            
             .toolbar{
