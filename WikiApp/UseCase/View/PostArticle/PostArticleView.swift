@@ -6,22 +6,22 @@
 //
 import SwiftUI
 
-struct PostArtticleView: View {
+struct PostArticleView: View {
     @State private var name = ""
     
     var body: some View {
         NavigationView {
-            HStack(alignment: .top, spacing: 16) {
+            HStack(alignment: .top, spacing: 0) {
                 Image("nene")
                     .resizable()
                     .frame(width: 32, height: 32)
                     .cornerRadius(20)
                     
                 TextEditor(text: $name)
-                    .frame(maxWidth: .infinity,maxHeight:.infinity, alignment:.topLeading)
-                    .navigationTitle("記事投稿")
-                    .navigationBarTitleDisplayMode(.inline)
+                    .frame(width: 340, height: 750)
             }
+            .navigationTitle("記事投稿")
+            .navigationBarTitleDisplayMode(.inline)
             
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
