@@ -34,6 +34,8 @@ enum SFSymbol: String {
     case gear = "gearshape"
     /// ＋
     case plus = "plus"
+    
+    case paperplane = "paperplane"
 }
 
 extension Image {
