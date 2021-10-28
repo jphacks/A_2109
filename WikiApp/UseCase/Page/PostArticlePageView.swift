@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct PostArticlePageView: View {
+    
     var body: some View {
         NavigationView {
-            PostArticleView(placeholderText: "記事をここに入力")
+            PostArticleView()
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
                         Button(action: {}) {

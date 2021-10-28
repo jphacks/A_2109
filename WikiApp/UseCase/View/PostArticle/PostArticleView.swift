@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct PostArticleView: View {
-    var placeholderText: String
+
     @State private var name = ""
     
     var body: some View {
@@ -21,9 +21,10 @@ struct PostArticleView: View {
             ZStack(alignment: .top) {
                 TextEditor(text: $name)
                     .padding(.vertical, 16)
+                
                 if name.isEmpty {
-                    HStack{
-                        Text(placeholderText)
+                    HStack(alignment: .center, spacing: 0){
+                        Text("記事をここに入力")
                             .foregroundColor(.formText)
                             .padding(.top, 24)
                         Spacer()
