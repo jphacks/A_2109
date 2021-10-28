@@ -17,10 +17,10 @@ struct CommonButton: View {
             Text(title)
                 .font(.h2)
                 .foregroundColor(.white)
-                .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 100)
+                .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 60)
                 .background(color)
-                .cornerRadius(10)
-                .padding(.horizontal, 16)
+                .cornerRadius(20)
+                .padding(.horizontal, 48)
         }
     }
 }
