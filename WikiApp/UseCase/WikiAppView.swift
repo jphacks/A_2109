@@ -27,7 +27,7 @@ struct WikiAppView: View {
             
             TopPageView()
                 .tabItem {
-                    Label("新規作成", systemImage: SFSymbol.pencil.rawValue)
+                    Label("新規登録", systemImage: SFSymbol.edit.rawValue)
                 }
                 .tag(TabController.Tab.edit)
             
