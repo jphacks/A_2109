@@ -18,7 +18,6 @@ struct ArticleListView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .top, spacing: 20) {
-                
                 Image("nene")
                     .resizable()
                     .frame(width: 80, height: 80)

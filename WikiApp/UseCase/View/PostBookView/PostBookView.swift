@@ -21,11 +21,13 @@ struct PostBookView: View{
                     .background(Color.formBackground)
                     .cornerRadius(10)
                     .padding(.horizontal, 32)
+                    .padding(.top, 10)
                 
                 Button(action: { loading.toggle() }) {
                     Image(symbol: SFSymbol.search)
                         .foregroundColor(Color.primary)
                         .padding(.trailing, 32)
+                        .padding(.top, 10)
                 }
             }
             Button(action: {}){
