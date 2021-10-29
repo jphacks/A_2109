@@ -11,7 +11,7 @@ struct EditArticlePageView: View {
     
     var body: some View {
         NavigationView {
-            PostArticleView()
+            EditArticleView(context: "この本は素晴らしい！！！！！")
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
                         Button(action: {}) {
