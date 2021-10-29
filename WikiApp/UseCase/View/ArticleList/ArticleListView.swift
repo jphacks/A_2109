@@ -70,14 +70,14 @@ struct ArticleListView: View {
                         Button(action: {}){
                             Image(symbol: SFSymbol.bookmark)
                                 .padding(.top, 10)
-                                .padding(.leading, 5)
+                                .padding(.leading, 16)
                                 .foregroundColor(.primary)
                         }
                         
                         Button(action: {}){
                             Image(symbol: SFSymbol.heart)
                                 .padding(.top, 10)
-                                .padding(.trailing, 5)
+                                .padding(.trailing, 8)
                                 .foregroundColor(.primary)
                         }
                     }
