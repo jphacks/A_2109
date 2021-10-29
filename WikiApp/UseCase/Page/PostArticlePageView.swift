@@ -9,12 +9,14 @@ import SwiftUI
 
 struct PostArticlePageView: View {
     
+    @Environment(\.presentationMode) private var presentationMode
+    
     var body: some View {
         NavigationView {
             PostArticleView()
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
-                        Button(action: {}) {
+                        Button(action: dismiss) {
                             Image(symbol: SFSymbol.xmark)
                                 .foregroundColor(.primary)
                         }
@@ -27,5 +29,8 @@ struct PostArticlePageView: View {
                     }
                 }
         }
+    }
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct EditArticleView: View {
 
-    @State private var name = ""
+    @State var context: String
     
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
@@ -19,10 +19,10 @@ struct EditArticleView: View {
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 8))
             
             ZStack(alignment: .top) {
-                TextEditor(text: $name)
+                TextEditor(text: $context)
                     .padding(.vertical, 16)
                 
-                if name.isEmpty {
+                if context.isEmpty {
                     HStack(alignment: .center, spacing: 0){
                         Text("記事をここに入力")
                             .foregroundColor(.formText)

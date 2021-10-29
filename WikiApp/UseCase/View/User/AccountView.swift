@@ -74,8 +74,7 @@ struct BookMarkListView: View {
                             .padding(.top, 16)
                     }
                     .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        // TODO: replace EditArticlePageView
-                        TopView()
+                        EditArticlePageView()
                     }
                     
                     Button(action: { alertIsPresented.toggle() }) {
@@ -122,8 +121,7 @@ struct LikeListView: View {
                             .padding(.top, 16)
                     }
                     .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        // TODO: replace EditArticlePageView
-                        TopView()
+                        EditArticlePageView()
                     }
                     
                     Button(action: { alertIsPresented.toggle() }) {
@@ -171,7 +169,7 @@ struct MyPostArticleListView: View {
                     }
                     .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
                         // TODO: replace EditArticlePageView
-                        TopView()
+                        EditArticlePageView()
                     }
                     
                     Button(action: { alertIsPresented.toggle() }) {

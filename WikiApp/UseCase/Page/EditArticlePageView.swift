@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct EditArticlePageView: View {
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         NavigationView {
-            PostArticleView()
+            EditArticleView(context: "POSTとGETがよく使われるのは、\nWebのFormがこの二つしか受け付けてなかったためである")
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
-                        Button(action: {}) {
+                        Button(action: dismiss) {
                             Image(symbol: SFSymbol.xmark)
                                 .foregroundColor(.primary)
                         }
@@ -27,5 +28,8 @@ struct EditArticlePageView: View {
                     }
                 }
         }
+    }
+    private func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
