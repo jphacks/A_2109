@@ -45,6 +45,9 @@ enum SFSymbol: String {
     /// 􀈑
     case trash = "trash"
     
+    /// 􀈊
+    case pencil = "pencil"
+    
 }
 
 extension Image {

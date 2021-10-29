@@ -14,7 +14,6 @@ struct CommonTextField: View {
     var body: some View {
         TextField(placeholder, text: $text)
             .font(.h2)
-            .foregroundColor(.formText)
             .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 80)
             .padding(.leading, 16)
             .background(Color.formBackground)

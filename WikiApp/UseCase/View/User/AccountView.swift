@@ -62,35 +62,14 @@ struct BookMarkListView: View {
     var body: some View {
         ScrollView {
             ForEach(0..<5) { _ in
-                HStack(alignment: .top, spacing: 24) {
-                    Text("aaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaa")
-                        .padding(.horizontal, 32)
-                    
-                    Spacer()
-                    
-                    Button(action: { sheetIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.edit)
-                            .foregroundColor(.primary)
-                            .padding(.top, 16)
-                    }
-                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        // TODO: replace EditArticlePageView
-                        TopView()
-                    }
-                    
-                    Button(action: { alertIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.trash)
-                            .foregroundColor(.primary)
-                            .padding(.top, 16)
-                            .padding(.trailing, 16)
-                    }
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
-                              primaryButton: .cancel(Text("キャンセル")),
-                              secondaryButton: .destructive(Text("削除"), action: delete))
-                    }
-                }
+                Text("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                    .padding(.bottom, 4)
                 
+                HStack(alignment: .top, spacing: 24) {
+                    Spacer()
+                    BookMarkButton(isBookMark: false)
+                    LikeButton(isLike: false)
+                }
                 Divider()
             }
         }
@@ -110,35 +89,14 @@ struct LikeListView: View {
     var body: some View {
         ScrollView {
             ForEach(0..<5) { _ in
-                HStack(alignment: .top, spacing: 24) {
-                    Text("ccccccccccccccc\naaaaaaaaaaaaaaaa")
-                        .padding(.horizontal, 32)
-                    
-                    Spacer()
-                    
-                    Button(action: { sheetIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.edit)
-                            .foregroundColor(.primary)
-                            .padding(.top, 16)
-                    }
-                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        // TODO: replace EditArticlePageView
-                        TopView()
-                    }
-                    
-                    Button(action: { alertIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.trash)
-                            .foregroundColor(.primary)
-                            .padding(.top, 16)
-                            .padding(.trailing, 16)
-                    }
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
-                              primaryButton: .cancel(Text("キャンセル")),
-                              secondaryButton: .destructive(Text("削除"), action: delete))
-                    }
-                }
+                Text("ccccccccccccccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                    .padding(.bottom, 4)
                 
+                HStack(alignment: .top, spacing: 24) {
+                    Spacer()
+                    BookMarkButton(isBookMark: false)
+                    LikeButton(isLike: false)
+                }
                 Divider()
             }
         }
@@ -158,26 +116,24 @@ struct MyPostArticleListView: View {
     var body: some View {
         ScrollView {
             ForEach(0..<5) { _ in
+                Text("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                    .padding(.bottom, 4)
+                
                 HStack(alignment: .top, spacing: 24) {
-                    Text("testtest\naaaaaaaaaaaaaaaa")
-                        .padding(.horizontal, 32)
-                    
                     Spacer()
                     
-                    Button(action: {  sheetIsPresented.toggle() }) {
+                    Button(action: { sheetIsPresented.toggle() }) {
                         Image(symbol: SFSymbol.edit)
                             .foregroundColor(.primary)
-                            .padding(.top, 16)
+                            .padding(.bottom, 4)
                     }
                     .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        // TODO: replace EditArticlePageView
-                        TopView()
+                        EditArticlePageView()
                     }
                     
                     Button(action: { alertIsPresented.toggle() }) {
                         Image(symbol: SFSymbol.trash)
                             .foregroundColor(.primary)
-                            .padding(.top, 16)
                             .padding(.trailing, 16)
                     }
                     .alert(isPresented: $alertIsPresented) {
@@ -186,7 +142,6 @@ struct MyPostArticleListView: View {
                               secondaryButton: .destructive(Text("削除"), action: delete))
                     }
                 }
-                
                 Divider()
             }
         }
