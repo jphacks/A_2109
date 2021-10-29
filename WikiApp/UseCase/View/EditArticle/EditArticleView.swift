@@ -10,6 +10,8 @@ struct EditArticleView: View {
 
     @State private var name = ""
     
+    var context: String
+    
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             Image("nene")
