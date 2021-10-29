@@ -49,7 +49,7 @@ struct ArticleListView: View {
                                 }
                             }
                             
-                            Button(action: {}){
+                            Button(action: {openAmazonProduct(withId: "4774142042")}){
                                 Image("amazon")
                             }
                         }
@@ -105,6 +105,19 @@ struct ArticleListView: View {
                 }
             }
         }
+    }
+    
+    private func openAmazonProduct(withId id: String) {
+       guard let amazonWebURL = URL(string: "https://amzn.to/2MQC8Bz"),
+             let amazonAppURL = URL(string: "com.amazon.mobile.shopping://www.amazon.com/products/\(id)/") else {
+                 return
+       }
+       if UIApplication.shared.canOpenURL(amazonAppURL) {
+                UIApplication.shared.open(amazonAppURL, options: [:], completionHandler: nil)
+       }
+       else if UIApplication.shared.canOpenURL(amazonWebURL) {
+                UIApplication.shared.open(amazonWebURL, options: [:], completionHandler: nil)
+       }
     }
     
     private struct BookMarkButton: View {
