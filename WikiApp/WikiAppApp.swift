@@ -14,6 +14,7 @@ struct WikiAppApp: App {
     var body: some Scene {
         WindowGroup {
             ArticleListPageView()
+
         }
     }
 }

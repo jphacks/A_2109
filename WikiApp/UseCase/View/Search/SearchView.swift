@@ -10,10 +10,43 @@ import SwiftUI
 struct SearchView: View {
     
     @State private var searchText = ""
+    @State private var loading = true
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            TextField("", text: $searchText)
+        VStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 0) {
+                TextField("ここにisbnを入力", text: $searchText)
+                    .background(Color.formBackground)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 32)
+                
+                Button(action: { loading.toggle() }) {
+                    Image(symbol: SFSymbol.search)
+                        .foregroundColor(Color.primary)
+                }
+            }
+            .padding(32)
+            
+            VerticalSpacer(height: 64)
+            
+            if loading {
+                Text("検索中...")
+                    .font(.h1)
+                    .padding(.vertical, 32)
+            } else {
+                Text("検索結果")
+                    .font(.serchText)
+                    .padding(.vertical, 32)
+                
+                Button(action: {}) {
+                    Image("nene")
+                        .resizable()
+                        .frame(width: 120, height: 120)
+                        .cornerRadius(10)
+                }
+            }
+            
+            Spacer()
         }
     }
 }
