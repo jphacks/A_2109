@@ -12,7 +12,6 @@ struct PostBookPageView: View{
         NavigationView{
             PostBookView()
                 .navigationTitle("書籍登録")
-                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
