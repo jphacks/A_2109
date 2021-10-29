@@ -57,7 +57,10 @@ struct ArticleListView: View {
                 .font(.h3)
                 .padding(10)
             
-            List(1..<5) {item in
+            Divider()
+            
+            ScrollView{
+            ForEach(1..<5) {item in
                 VStack{
                     HStack(alignment: .bottom){
                         Text("おはよおおおおおおおおおおおおおこんにちはあああああああああああああさよならあああああああああああああああ")
@@ -78,7 +81,9 @@ struct ArticleListView: View {
                                 .foregroundColor(.primary)
                         }
                     }
+                    Divider()
                 }
+            }
             }
             Spacer()
         }
