@@ -19,7 +19,7 @@ struct WikiAppView: View {
                 }
                 .tag(TabController.Tab.home)
             
-            TopPageView()
+            SearchPageView()
                 .tabItem {
                     Label("さがす", systemImage: SFSymbol.search.rawValue)
                 }
