@@ -33,6 +33,7 @@ struct AccountView: View {
                     .tag(Page.posrArticle)
             }
             .pickerStyle(SegmentedPickerStyle())
+            .padding(.bottom, 16)
             
             ZStack(alignment: .leading) {
                 switch selected {
@@ -55,38 +56,144 @@ struct AccountView: View {
 
 struct BookMarkListView: View {
     
+    @State private var alertIsPresented = false
+    @State private var sheetIsPresented = false
+    
     var body: some View {
-        List {
-            // TODO: デフォルト値
+        ScrollView {
             ForEach(0..<5) { _ in
-                HStack(alignment: .top, spacing: 0) {
+                HStack(alignment: .top, spacing: 24) {
                     Text("aaaaaaaaaaaaaaa\naaaaaaaaaaaaaaaa")
+                        .padding(.horizontal, 32)
+                    
+                    Spacer()
+                    
+                    Button(action: { sheetIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.edit)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                    }
+                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
+                        // TODO: replace EditArticlePageView
+                        TopView()
+                    }
+                    
+                    Button(action: { alertIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.trash)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                            .padding(.trailing, 16)
+                    }
+                    .alert(isPresented: $alertIsPresented) {
+                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
+                              primaryButton: .cancel(Text("キャンセル")),
+                              secondaryButton: .destructive(Text("削除"), action: delete))
+                    }
                 }
+                
+                Divider()
             }
         }
+        .background(Color.background)
+    }
+    
+    private func delete() {
+        print("delete article")
     }
 }
 
 struct LikeListView: View {
     
+    @State private var alertIsPresented = false
+    @State private var sheetIsPresented = false
+    
     var body: some View {
-        List {
-            // TODO: デフォルト値
+        ScrollView {
             ForEach(0..<5) { _ in
-                Text("cccccccccccccc\naaaaaaaaaaaaaaaa")
+                HStack(alignment: .top, spacing: 24) {
+                    Text("ccccccccccccccc\naaaaaaaaaaaaaaaa")
+                        .padding(.horizontal, 32)
+                    
+                    Spacer()
+                    
+                    Button(action: { sheetIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.edit)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                    }
+                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
+                        // TODO: replace EditArticlePageView
+                        TopView()
+                    }
+                    
+                    Button(action: { alertIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.trash)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                            .padding(.trailing, 16)
+                    }
+                    .alert(isPresented: $alertIsPresented) {
+                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
+                              primaryButton: .cancel(Text("キャンセル")),
+                              secondaryButton: .destructive(Text("削除"), action: delete))
+                    }
+                }
+                
+                Divider()
             }
         }
+        .background(Color.background)
+    }
+    
+    private func delete() {
+        print("delete article")
     }
 }
 
 struct MyPostArticleListView: View {
     
+    @State private var alertIsPresented = false
+    @State private var sheetIsPresented = false
+    
     var body: some View {
-        List {
-            // TODO: デフォルト値
+        ScrollView {
             ForEach(0..<5) { _ in
-                Text("testtest\naaaaaaaaaaaaaaaa")
+                HStack(alignment: .top, spacing: 24) {
+                    Text("testtest\naaaaaaaaaaaaaaaa")
+                        .padding(.horizontal, 32)
+                    
+                    Spacer()
+                    
+                    Button(action: {  sheetIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.edit)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                    }
+                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
+                        // TODO: replace EditArticlePageView
+                        TopView()
+                    }
+                    
+                    Button(action: { alertIsPresented.toggle() }) {
+                        Image(symbol: SFSymbol.trash)
+                            .foregroundColor(.primary)
+                            .padding(.top, 16)
+                            .padding(.trailing, 16)
+                    }
+                    .alert(isPresented: $alertIsPresented) {
+                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
+                              primaryButton: .cancel(Text("キャンセル")),
+                              secondaryButton: .destructive(Text("削除"), action: delete))
+                    }
+                }
+                
+                Divider()
             }
         }
+        .background(Color.background)
+    }
+    
+    private func delete() {
+        print("delete article")
     }
 }
