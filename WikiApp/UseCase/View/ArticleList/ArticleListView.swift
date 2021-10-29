@@ -28,6 +28,7 @@ struct ArticleListView: View {
                     Text("著者")
                         .font(.body)
                         .padding(.trailing, 30)
+                        .padding(.bottom, 50)
                     
                     HStack(alignment: .center, spacing: 10) {
                         Image(symbol: SFSymbol.plus)
