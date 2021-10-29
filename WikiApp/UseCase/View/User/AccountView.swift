@@ -67,26 +67,8 @@ struct BookMarkListView: View {
                 
                 HStack(alignment: .top, spacing: 24) {
                     Spacer()
-                    
-                    Button(action: { sheetIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.edit)
-                            .foregroundColor(.primary)
-                            .padding(.bottom, 4)
-                    }
-                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        EditArticlePageView()
-                    }
-                    
-                    Button(action: { alertIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.trash)
-                            .foregroundColor(.primary)
-                            .padding(.trailing, 16)
-                    }
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
-                              primaryButton: .cancel(Text("キャンセル")),
-                              secondaryButton: .destructive(Text("削除"), action: delete))
-                    }
+                    BookMarkButton(isBookMark: false)
+                    LikeButton(isLike: false)
                 }
                 Divider()
             }
@@ -112,26 +94,8 @@ struct LikeListView: View {
                 
                 HStack(alignment: .top, spacing: 24) {
                     Spacer()
-                    
-                    Button(action: { sheetIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.edit)
-                            .foregroundColor(.primary)
-                            .padding(.bottom, 4)
-                    }
-                    .fullScreenCover(isPresented: $sheetIsPresented, onDismiss: nil) {
-                        EditArticlePageView()
-                    }
-                    
-                    Button(action: { alertIsPresented.toggle() }) {
-                        Image(symbol: SFSymbol.trash)
-                            .foregroundColor(.primary)
-                            .padding(.trailing, 16)
-                    }
-                    .alert(isPresented: $alertIsPresented) {
-                        Alert(title: Text("確認"), message: Text("本当に記事を削除してもよろしいですか"),
-                              primaryButton: .cancel(Text("キャンセル")),
-                              secondaryButton: .destructive(Text("削除"), action: delete))
-                    }
+                    BookMarkButton(isBookMark: false)
+                    LikeButton(isLike: false)
                 }
                 Divider()
             }

@@ -119,44 +119,4 @@ struct ArticleListView: View {
                 UIApplication.shared.open(amazonWebURL, options: [:], completionHandler: nil)
        }
     }
-    
-    private struct BookMarkButton: View {
-        @State var isBookMark: Bool
-        
-        var body: some View {
-            Button(action: { isBookMark.toggle()  }) {
-                ZStack(alignment: .trailing) {
-                    Image(symbol: SFSymbol.bookmark)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 4)
-                        .isHidden(isBookMark)
-                    
-                    Image(symbol: SFSymbol.bookmarkFill)
-                        .foregroundColor(.primary)
-                        .padding(.bottom, 4)
-                        .isHidden(!isBookMark)
-                }
-            }
-        }
-    }
-    
-    private struct LikeButton: View {
-        @State var isLike: Bool
-        
-        var body: some View {
-            Button(action: { isLike.toggle() }) {
-                ZStack(alignment: .trailing) {
-                    Image(symbol: SFSymbol.heart)
-                        .foregroundColor(.primary)
-                        .padding(.trailing, 16)
-                        .isHidden(isLike)
-                    
-                    Image(symbol: SFSymbol.heartFill)
-                        .foregroundColor(.primary)
-                        .padding(.trailing, 16)
-                        .isHidden(!isLike)
-                }
-            }
-        }
-    }
 }
