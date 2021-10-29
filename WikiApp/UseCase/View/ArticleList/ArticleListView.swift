@@ -9,83 +9,135 @@ import SwiftUI
 
 struct ArticleListView: View {
     
-    enum Page: Int {
-        case sort, filter
-    }
-    
-    @State private var selected = Page.sort
+    @State private var isPined = false
+    @State private var isBookMark = false
+    @State private var isLike = false
+    private let name = "山下陽平"
     
     var body: some View {
-        VStack(alignment: .center) {
-            HStack(alignment: .top, spacing: 20) {
+        ZStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 0) {
+                HStack(alignment: .top, spacing: 24) {
+                    
+                    Image("nene")
+                        .resizable()
+                        .frame(width: 80, height: 80)
+                        .padding(.top, 24)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Webを支える技術")
+                            .font(.h3)
+                            .fontWeight(.heavy)
+                        
+                        Text("著者: \(name)")
+                            .font(.body)
+                            .padding(.bottom, 32)
+                        
+                        HStack(alignment: .center, spacing: 16) {
+                            Button(action: { isPined.toggle() }){
+                                ZStack {
+                                    Image(symbol: SFSymbol.bookmark)
+                                        .foregroundColor(.primary)
+                                        .isHidden(isPined)
+                                    
+                                    Image(symbol: SFSymbol.bookmarkFill)
+                                        .foregroundColor(.primary)
+                                        .isHidden(!isPined)
+                                }
+                            }
+                            
+                            Button(action: {}){
+                                Image("amazon")
+                            }
+                        }
+                    }
+                    .padding(24)
+                }
                 
-                Image("nene")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .padding(.top, 25)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Webを支える技術")
+                HStack(alignment: .top, spacing: 0) {
+                    Text("記事一覧")
                         .font(.h3)
-                        .fontWeight(.heavy)
-                    
-                    Text("著者")
-                        .font(.body)
-                        .padding(.bottom, 50)
-                    
-                    HStack(alignment: .center, spacing: 10) {
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.bookmark)
-                                .foregroundColor(.primary)
-                        }
-                        
-                        Button(action: {}){
-                            Image("amazon")
-                        }
-                    }
+                    Spacer()
                 }
-                .padding(20)
-            }
-            Picker("", selection: $selected) {
-                Text("ソート").tag(Page.sort)
-                
-                Text("フィルター").tag(Page.filter)
-            }
-            .pickerStyle(.segmented)
-            
-            Text("記事一覧")
-                .font(.h3)
                 .padding(10)
-            
-            Divider()
-            
-            ScrollView{
-            ForEach(1..<5) {item in
-                VStack{
-                    HStack(alignment: .bottom){
-                        Text("おはよおおおおおおおおおおおおおこんにちはあああああああああああああさよならあああああああああああああああ")
+                
+                Divider()
+                
+                ScrollView {
+                    ForEach(0..<5) { num in
+                        Text("おはよおおおおおおおおおおおおおこんにちはあああああああああああああさよならあああああああああああああああおはよおおおおおおおおおおおおおこんにちはあああああああああああああさよならあああああああああああああ")
+                            .padding(.bottom, 4)
+                            .tag(num)
                         
-                        Spacer()
-                        
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.bookmark)
-                                .padding(.top, 10)
-                                .padding(.leading, 24)
-                                .foregroundColor(.primary)
+                        HStack(alignment: .top, spacing: 24) {
+                            Spacer()
+                            BookMarkButton(isBookMark: false)
+                            LikeButton(isLike: false)
                         }
                         
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.heart)
-                                .padding(.top, 10)
-                                .padding(.trailing, 16)
-                                .foregroundColor(.primary)
-                        }
+                        Divider()
                     }
-                    Divider()
+                }
+                .background(Color.background)
+                
+                Spacer()
+            }
+            VStack(alignment: .center, spacing: 0) {
+                Spacer()
+                HStack(alignment: .top, spacing: 0) {
+                    Spacer()
+                    Button(action: {}) {
+                        Image(symbol: SFSymbol.pencil)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                            .background(Color.primary)
+                            .cornerRadius(5)
+                            .padding(16)
+                    }
                 }
             }
+        }
+    }
+    
+    private struct BookMarkButton: View {
+        @State var isBookMark: Bool
+        
+        var body: some View {
+            Button(action: { isBookMark.toggle()  }) {
+                ZStack(alignment: .trailing) {
+                    Image(symbol: SFSymbol.bookmark)
+                        .foregroundColor(.primary)
+                        .padding(.bottom, 4)
+                        .isHidden(isBookMark)
+                    
+                    Image(symbol: SFSymbol.bookmarkFill)
+                        .foregroundColor(.primary)
+                        .padding(.bottom, 4)
+                        .isHidden(!isBookMark)
+                }
             }
-            Spacer()
+        }
+    }
+    
+    private struct LikeButton: View {
+        @State var isLike: Bool
+        
+        var body: some View {
+            Button(action: { isLike.toggle() }) {
+                ZStack(alignment: .trailing) {
+                    Image(symbol: SFSymbol.heart)
+                        .foregroundColor(.primary)
+                        .padding(.trailing, 16)
+                        .isHidden(isLike)
+                    
+                    Image(symbol: SFSymbol.heartFill)
+                        .foregroundColor(.primary)
+                        .padding(.trailing, 16)
+                        .isHidden(!isLike)
+                }
+            }
         }
     }
 }

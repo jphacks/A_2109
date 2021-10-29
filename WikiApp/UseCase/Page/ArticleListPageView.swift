@@ -10,9 +10,8 @@ import SwiftUI
 struct ArticleListPageView: View {
     
     var body: some View {
-        NavigationView {
-            ArticleListView()
-                .navigationTitle("Webを支える技術")
-        }
+        ArticleListView()
+            .navigationTitle("Webを支える技術")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }

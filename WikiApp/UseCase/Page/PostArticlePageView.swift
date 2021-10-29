@@ -18,17 +18,16 @@ struct PostArticlePageView: View {
                     ToolbarItem(placement: .navigationBarLeading){
                         Button(action: dismiss) {
                             Image(symbol: SFSymbol.xmark)
-                                .foregroundColor(.primary)
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {}){
                             Image(symbol: SFSymbol.paperplane)
-                                .foregroundColor(.primary)
                         }
                     }
                 }
         }
+        .accentColor(.primary)
     }
     private func dismiss() {
         presentationMode.wrappedValue.dismiss()

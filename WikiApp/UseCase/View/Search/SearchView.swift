@@ -11,13 +11,17 @@ struct SearchView: View {
     
     @State private var searchText = ""
     @State private var loading = true
+    @State private var isPresented = true
+    
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
                 TextField("ここにisbnを入力", text: $searchText)
+                    .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 10, maxHeight: 40)
+                    .padding(.leading, 16)
                     .background(Color.formBackground)
-                    .cornerRadius(10)
+                    .cornerRadius(20)
                     .padding(.horizontal, 32)
                 
                 Button(action: { loading.toggle() }) {
@@ -38,11 +42,14 @@ struct SearchView: View {
                     .font(.serchText)
                     .padding(.vertical, 32)
                 
-                Button(action: {}) {
+                Button(action: { isPresented.toggle() }) {
                     Image("nene")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
+                }
+                NavigationLink(destination: ArticleListPageView(), isActive: $isPresented) {
+                    EmptyView()
                 }
             }
             
