@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ArticleListView: View {
     
-    @State private var SorF = 0;
+    enum Page: Int {
+        case sort, filter
+    }
     
-    var context: String
+    @State private var selected = Page.sort
     
     var body: some View {
         VStack(alignment: .center) {
@@ -20,30 +22,33 @@ struct ArticleListView: View {
                 Image("nene")
                     .resizable()
                     .frame(width: 80, height: 80)
+                    .padding(.top, 25)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Webを支える技術")
                         .font(.h3)
                         .fontWeight(.heavy)
-                        .padding(.trailing, 30)
                     
                     Text("著者")
                         .font(.body)
-                        .padding(.trailing, 30)
                         .padding(.bottom, 50)
                     
                     HStack(alignment: .center, spacing: 10) {
-                        Image(symbol: SFSymbol.plus)
+                        Button(action: {}){
+                            Image(symbol: SFSymbol.bookmark)
+                        }
                         
-                        Image("amazon")
+                        Button(action: {}){
+                            Image("amazon")
+                        }
                     }
                 }
                 .padding(20)
             }
-            Picker("", selection: $SorF) {
-                Text("ソート").tag(0)
+            Picker("", selection: $selected) {
+                Text("ソート").tag(Page.sort)
                 
-                Text("フィルター").tag(1)
+                Text("フィルター").tag(Page.filter)
             }
             .pickerStyle(.segmented)
             
@@ -51,23 +56,36 @@ struct ArticleListView: View {
                 .font(.h3)
                 .padding(10)
             
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                HStack{
-                    Image(symbol: SFSymbol.plus)
-                        .padding(.top, 10)
-                        .padding(.leading, 5)
-                    
-                    Spacer()
-                    
-                    Image(symbol: SFSymbol.heart)
-                        .padding(.top, 10)
-                    
-                    Image(symbol: SFSymbol.edit)
-                        .padding(.top, 10)
-                    
-                    Image(symbol: SFSymbol.xmark)
-                        .padding(.top, 10)
-                        .padding(.trailing, 5)
+            List(1..<5) {item in
+                VStack{
+                    HStack(alignment: .bottom){
+                        Button(action: {}){
+                            Image(symbol: SFSymbol.bookmark)
+                                .padding(.top, 10)
+                                .padding(.leading, 5)
+                        }
+                        
+                        Text("うんこおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお")
+                        
+                        Spacer()
+                        
+                        Button(action: {}){
+                            Image(symbol: SFSymbol.heart)
+                                .padding(.top, 10)
+                        }
+                        
+                        Button(action: {}){
+                            Image(symbol: SFSymbol.edit)
+                                .padding(.top, 10)
+                        }
+                        
+                        Button(action: {}){
+                            Image(symbol: SFSymbol.xmark)
+                                .padding(.top, 10)
+                                .padding(.trailing, 5)
+                        }
+                        
+                    }
                 }
             }
             Spacer()

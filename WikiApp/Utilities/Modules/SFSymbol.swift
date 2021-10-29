@@ -13,10 +13,10 @@ enum SFSymbol: String {
     case profile = "person.circle"
     
     /// 􀆄
-    case xmark
+    case xmark = "xmark"
     
     /// 􀊴
-    case heart
+    case heart = "heart"
     
     /// 􀊵
     case heartFill = "heart.fill"
@@ -36,6 +36,10 @@ enum SFSymbol: String {
     case plus = "plus"
     
     case paperplane = "paperplane"
+    
+    case bookmark = "bookmark"
+    
+    case bookmarkFill = "bookmark.fill"
 }
 
 extension Image {
