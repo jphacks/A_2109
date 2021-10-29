@@ -12,6 +12,9 @@ struct ArticleListView: View {
     @State private var isPined = false
     @State private var isBookMark = false
     @State private var isLike = false
+    
+    @State private var isPresented = false
+    
     private let name = "山下陽平"
     
     var body: some View {
@@ -86,7 +89,7 @@ struct ArticleListView: View {
                 Spacer()
                 HStack(alignment: .top, spacing: 0) {
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: { isPresented.toggle() }) {
                         Image(symbol: SFSymbol.pencil)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -95,6 +98,9 @@ struct ArticleListView: View {
                             .background(Color.primary)
                             .cornerRadius(5)
                             .padding(16)
+                    }
+                    .fullScreenCover(isPresented: $isPresented, onDismiss: nil) {
+                        PostArticlePageView()
                     }
                 }
             }
