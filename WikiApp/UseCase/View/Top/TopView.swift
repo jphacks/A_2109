@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TopView: View {
+    
+    @StateObject private var viewModel = TopViewModel()
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("ピン留め本一覧")
@@ -79,6 +82,9 @@ struct TopView: View {
                 }
                 .padding(.horizontal, 16)
             }
+        }
+        .onFirstAppear {
+            viewModel.getTop()
         }
     }
 }
