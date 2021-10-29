@@ -10,11 +10,10 @@ import SwiftUI
 @main
 struct WikiAppApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
-            PostBookPageView()
-
+            LoginView()
         }
     }
 }

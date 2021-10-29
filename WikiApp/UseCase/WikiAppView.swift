@@ -31,7 +31,7 @@ struct WikiAppView: View {
                 }
                 .tag(TabController.Tab.edit)
             
-            TopPageView()
+            AccountpageView()
                 .tabItem {
                     Label("アカウント", systemImage: SFSymbol.profile.rawValue)
                 }

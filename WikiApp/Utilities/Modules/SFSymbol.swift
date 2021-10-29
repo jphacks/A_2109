@@ -35,11 +35,16 @@ enum SFSymbol: String {
     /// ＋
     case plus = "plus"
     
+    /// 􀈟
     case paperplane = "paperplane"
     
     case bookmark = "bookmark"
     
     case bookmarkFill = "bookmark.fill"
+
+    /// 􀈑
+    case trash = "trash"
+    
 }
 
 extension Image {
