@@ -36,6 +36,7 @@ struct ArticleListView: View {
                     HStack(alignment: .center, spacing: 10) {
                         Button(action: {}){
                             Image(symbol: SFSymbol.bookmark)
+                                .foregroundColor(.primary)
                         }
                         
                         Button(action: {}){
@@ -59,32 +60,23 @@ struct ArticleListView: View {
             List(1..<5) {item in
                 VStack{
                     HStack(alignment: .bottom){
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.bookmark)
-                                .padding(.top, 10)
-                                .padding(.leading, 5)
-                        }
-                        
-                        Text("うんこおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおおお")
+                        Text("おはよおおおおおおおおおおおおおこんにちはあああああああああああああさよならあああああああああああああああ")
                         
                         Spacer()
                         
                         Button(action: {}){
+                            Image(symbol: SFSymbol.bookmark)
+                                .padding(.top, 10)
+                                .padding(.leading, 5)
+                                .foregroundColor(.primary)
+                        }
+                        
+                        Button(action: {}){
                             Image(symbol: SFSymbol.heart)
                                 .padding(.top, 10)
-                        }
-                        
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.edit)
-                                .padding(.top, 10)
-                        }
-                        
-                        Button(action: {}){
-                            Image(symbol: SFSymbol.xmark)
-                                .padding(.top, 10)
                                 .padding(.trailing, 5)
+                                .foregroundColor(.primary)
                         }
-                        
                     }
                 }
             }
