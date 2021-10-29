@@ -8,5 +8,5 @@
 import Foundation
 
 struct Login: Codable {
-    let ID: Int
+    let message: String
 }

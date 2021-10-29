@@ -20,17 +20,35 @@ enum APIClient {
             let data = str.data(using: String.Encoding.utf8.rawValue)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = data
-            //urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
              
             return URLSession.shared.dataTaskPublisher(for: urlRequest)
-                .tryMap() { elemnt -> Data in
-                    guard let httpResponse = elemnt.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                .tryMap() { element -> Data in
+                    print(element.response)
+                    guard let httpResponse = element.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                         throw URLError(.badServerResponse)
                     }
-                    print(elemnt.data)
-                    return elemnt.data
+                    return element.data
                 }
                 .decode(type: Login.self, decoder: JSONDecoder())
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    struct GetTop {
+        func getTop() -> AnyPublisher<String, Error> {
+            let url = URL(string: "http://localhost:8000/top")!
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+             
+            return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                .tryMap() { element -> Data in
+                    print(element.response)
+                    guard let httpResponse = element.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                        throw URLError(.badServerResponse)
+                    }
+                    return element.data
+                }
+                .decode(type: String.self, decoder: JSONDecoder())
                 .eraseToAnyPublisher()
         }
     }
