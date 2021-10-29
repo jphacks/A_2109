@@ -5,6 +5,9 @@ extension Font {
     /// 24px, Bold
     static let h1 = Font.system(size: 24, weight: .semibold)
     
+    /// 24px,
+    static let serchText = Font.system(size: 24, weight: .regular)
+    
     /// 22px, Bold
     static let h2 = Font.system(size: 22, weight: .semibold)
     
