@@ -11,6 +11,8 @@ struct ArticleListView: View {
     
     @State private var SorF = 0;
     
+    var context: String
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .top, spacing: 20) {
