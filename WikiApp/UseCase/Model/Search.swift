@@ -12,4 +12,6 @@ struct Search: Codable {
     let isbn: String
     let author: String
     let isPinned: Bool
+    let amazonLink: String
+    let ID: String
 }

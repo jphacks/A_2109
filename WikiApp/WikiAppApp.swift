@@ -13,11 +13,12 @@ struct WikiAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if (UserDefaults.standard.object(forKey: "session") != nil) {
-                WikiAppView()
-            } else {
-                LoginView()
-            }
+            LoginView()
+//            if (UserDefaults.standard.object(forKey: "session") != nil) {
+//                WikiAppView()
+//            } else {
+//                LoginView()
+//            }
         }
     }
 }
