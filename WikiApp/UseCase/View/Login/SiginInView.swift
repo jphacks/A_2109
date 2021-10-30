@@ -34,7 +34,7 @@ struct SignInView: View {
                     .padding(.top, 32)
                     .disabled(!viewModel.readyToCreate)
                     .fullScreenCover(isPresented: $viewModel.stateObject, onDismiss: nil) {
-                        Text("test")
+                        WikiAppView()
                     }
                 
                 Button(action: { isPreviewLogin.toggle() }) {
