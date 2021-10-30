@@ -58,11 +58,12 @@ struct BookMarkListView: View {
     
     @State private var alertIsPresented = false
     @State private var sheetIsPresented = false
+    let mockText = ["電子デバイスの魅力に引き込まれたこれこそ神の書物　アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
     
     var body: some View {
         ScrollView {
-            ForEach(0..<5) { _ in
-                Text("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            ForEach(mockText, id: \.self) { text in
+                Text(text)
                     .padding(.bottom, 4)
                 
                 HStack(alignment: .top, spacing: 24) {
@@ -85,11 +86,12 @@ struct LikeListView: View {
     
     @State private var alertIsPresented = false
     @State private var sheetIsPresented = false
+    let mockText = ["電子デバイスの魅力に引き込まれたこれこそ神の書物　アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
     
     var body: some View {
         ScrollView {
-            ForEach(0..<5) { _ in
-                Text("ccccccccccccccccccccccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            ForEach(mockText, id: \.self) { text in
+                Text(text)
                     .padding(.bottom, 4)
                 
                 HStack(alignment: .top, spacing: 24) {
@@ -113,10 +115,12 @@ struct MyPostArticleListView: View {
     @State private var alertIsPresented = false
     @State private var sheetIsPresented = false
     
+    let mockText = ["電子デバイスの魅力に引き込まれたこれこそ神の書物　アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
+    
     var body: some View {
         ScrollView {
-            ForEach(0..<5) { _ in
-                Text("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            ForEach(mockText, id: \.self) { text in
+                Text(text)
                     .padding(.bottom, 4)
                 
                 HStack(alignment: .top, spacing: 24) {

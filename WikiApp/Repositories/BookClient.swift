@@ -8,8 +8,8 @@
 import Combine
 
 struct BookClient {
-    let register: RegistBook
-    func search() -> AnyPublisher<RegistBook, Error> {
-        APIClient.RegisterBook(register: register)
+    let isbn: String
+    func search() -> AnyPublisher<[Book], Error> {
+        APIClient.GetBookIcon().getImage(isbn: isbn)
     }
 }

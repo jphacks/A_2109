@@ -21,7 +21,9 @@ final class PostBookViewModel: ObservableObject {
     @Published var isbn: String = ""
     @Published var loading: Bool = false
     
+    
     @Published private(set) var book: Stateful<[Book]> = .idle
+    @Published private(set) var register: Stateful<RegistBook> = .idle
     
     private var anyCancellable = Set<AnyCancellable>()
     
@@ -44,6 +46,27 @@ final class PostBookViewModel: ObservableObject {
             }
             ).store(in: &anyCancellable)
     }
+    
+    func registBook(book: Book) {
+        RegistBookClient(register: book).registBook()
+            .handleEvents(receiveSubscription: { [weak self] _ in
+                self?.register = .loading
+            })
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    print(error)
+                    self?.register = .failed(error)
+                case .finished: print("finish")
+                }
+            }, receiveValue: { [weak self] state in
+                guard let self = self else { return }
+                self.register = .loaded(state)
+            }
+            ).store(in: &anyCancellable)
+    }
+    
 }
 
 

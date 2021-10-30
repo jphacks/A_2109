@@ -11,7 +11,7 @@ struct AccountpageView: View {
     var body: some View {
         NavigationView {
             AccountView()
-                .navigationTitle("nene")
+                .navigationTitle("ねねっち")
         }
     }
 }

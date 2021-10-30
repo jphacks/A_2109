@@ -92,13 +92,13 @@ enum APIClient {
     }
     
     struct RegisterBook {
-        let register: RegistBook
+        let register: Book
         
         // TODO: あとで追加します
         func registBook() -> AnyPublisher<RegistBook, Error> {
             let url = URL(string: "http://localhost:8000/book")!
             var urlRequest = URLRequest(url: url)
-            let str = "isbn=\(register.isbn)&title=\(register.title)&author=\(register.author)&publishDate=\(register.publishDate)" as NSString
+            let str = "isbn=\(register.summary.isbn)&title=\(register.summary.title)&author=\(register.summary.author)&publishDate=\(register.summary.pubdate)" as NSString
             let data = str.data(using: String.Encoding.utf8.rawValue)
             urlRequest.httpMethod = "POST"
             urlRequest.httpBody = data
