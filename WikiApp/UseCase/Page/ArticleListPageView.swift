@@ -13,7 +13,7 @@ struct ArticleListPageView: View {
     
     var body: some View {
         ArticleListView(bookInfo: bookInfo)
-            .navigationTitle("Webを支える技術")
+            .navigationTitle(bookInfo.title)
             .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -11,7 +11,7 @@ struct SearchView: View {
     
     @State private var searchText = ""
     @State private var loading = true
-    @State private var isPresented = true
+    @State private var isPresented = false
     
     @StateObject private var viewModel = SearchViewModel()
     
@@ -48,8 +48,7 @@ struct SearchView: View {
                     .padding(.vertical, 32)
                 
                 Button(action: { isPresented.toggle() }) {
-                    Image("nene")
-                        .resizable()
+                    URLImageView(viewModel: .init(url: "https://cover.openbd.jp/\(viewModel.isbn).jpg"))
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
                 }

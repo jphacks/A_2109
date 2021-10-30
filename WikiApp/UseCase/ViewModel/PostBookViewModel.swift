@@ -1,5 +1,14 @@
 //
-//  TopViewModel.swift
+//  PostBookViewModel.swift
+//  WikiApp
+//
+//  Created by tiking on 2021/10/30.
+//
+
+import Combine
+
+//
+//  SearchViewModel.swift
 //  WikiApp
 //
 //  Created by tiking on 2021/10/30.
@@ -8,30 +17,33 @@
 import Foundation
 import Combine
 
-final class TopViewModel: ObservableObject {
-    @Published var test: String = ""
+final class PostBookViewModel: ObservableObject {
+    @Published var isbn: String = ""
+    @Published var loading: Bool = false
     
-    @Published private(set) var loginState: Stateful<String> = .idle
+    @Published private(set) var book: Stateful<[Book]> = .idle
     
     private var anyCancellable = Set<AnyCancellable>()
     
-    func getTop() {
-        TopClient().top()
+    func getBook() {
+        BookClient(isbn: isbn).search()
             .handleEvents(receiveSubscription: { [weak self] _ in
-                self?.loginState = .loading
+                self?.book = .loading
             })
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
                     print(error)
-                    self?.loginState = .failed(error)
+                    self?.book = .failed(error)
                 case .finished: print("finish")
                 }
             }, receiveValue: { [weak self] state in
                 guard let self = self else { return }
-                print(state)
+                self.book = .loaded(state)
             }
             ).store(in: &anyCancellable)
     }
 }
+
+
