@@ -9,8 +9,10 @@ import SwiftUI
 
 struct PostBookView: View{
     @State var searchText = ""
-    @State private var loading = true
     @State private var isShowCamera = false
+    @State private var isPresented = false
+    
+    @StateObject private var viewModel = PostBookViewModel()
     
     var body: some View {
         VStack(alignment: .center) {
@@ -23,7 +25,7 @@ struct PostBookView: View{
                     .cornerRadius(10)
                     .padding(.horizontal, 32)
                 
-                Button(action: { loading.toggle() }) {
+                Button(action: { viewModel.getBook() }) {
                     Image(symbol: SFSymbol.search)
                         .foregroundColor(Color.primary)
                         .padding(.trailing, 32)
@@ -37,34 +39,49 @@ struct PostBookView: View{
             .fullScreenCover(isPresented: $isShowCamera, onDismiss: nil) {
                 CameraView(isActive: $isShowCamera)
             }
-                Text("検索結果")
-                    .padding(32)
-                    .font(.h2)
             
-            HStack(alignment: .top, spacing: 40){
-                Image("nene")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .padding(.leading, 64)
+            switch viewModel.book {
+            case .idle:
+                EmptyView()
+            case .loading:
+                Text("検索中...")
+                    .font(.h1)
+                    .padding(.vertical, 32)
+            case let .loaded(book):
                 
-                VStack(alignment: .leading, spacing: 10){
-                    Text("タイトル")
-                        .font(.h3)
+                HStack(alignment: .top, spacing: 40){
+                    URLImageView(viewModel: .init(url: "https://cover.openbd.jp/\(viewModel.isbn).jpg"))
+                        .frame(width: 80, height: 80)
+                        .padding(.leading, 64)
                     
-                    Text("著者")
-                        .font(.body)
+                    VStack(alignment: .leading, spacing: 10){
+                        Text("タイトル")
+                            .font(.h3)
+                        
+                        Text("著者")
+                            .font(.body)
+                    }
+                    Spacer()
                 }
-                Spacer()
+                Button(action: {}){
+                    Text("追加する")
+                        .foregroundColor(.white)
+                        .frame(width: 80, height: 30)
+                        .background(Color.primary)
+                        .cornerRadius(10)
+                        .padding(40)
+                }
+            case .failed:
+                Text("検索に失敗しました🙇‍♂️")
+                    .font(.serchText)
+                    .padding(.vertical, 32)
             }
-            Button(action: {}){
-                Text("追加する")
-                    .foregroundColor(.white)
-                    .frame(width: 80, height: 30)
-                    .background(Color.primary)
-                    .cornerRadius(10)
-                    .padding(40)
-            }
+            
             Spacer()
         }
+    }
+    
+    private func registBook(book: Book) {
+        
     }
 }

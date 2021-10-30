@@ -11,7 +11,7 @@ struct SearchView: View {
     
     @State private var searchText = ""
     @State private var loading = true
-    @State private var isPresented = true
+    @State private var isPresented = false
     
     @StateObject private var viewModel = SearchViewModel()
     

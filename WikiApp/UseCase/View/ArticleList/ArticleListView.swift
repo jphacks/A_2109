@@ -22,8 +22,7 @@ struct ArticleListView: View {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .top, spacing: 24) {
                     
-                    Image("nene")
-                        .resizable()
+                    URLImageView(viewModel: .init(url: "https://cover.openbd.jp/\(bookInfo.isbn).jpg"))
                         .frame(width: 80, height: 80)
                         .padding(.top, 24)
                     

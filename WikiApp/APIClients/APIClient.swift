@@ -90,4 +90,29 @@ enum APIClient {
                 .eraseToAnyPublisher()
         }
     }
+    
+    struct RegisterBook {
+        let register: RegistBook
+        
+        // TODO: あとで追加します
+        func registBook() -> AnyPublisher<RegistBook, Error> {
+            let url = URL(string: "http://localhost:8000/book")!
+            var urlRequest = URLRequest(url: url)
+            let str = "isbn=\(register.isbn)&title=\(register.title)&author=\(register.author)&publishDate=\(register.publishDate)" as NSString
+            let data = str.data(using: String.Encoding.utf8.rawValue)
+            urlRequest.httpMethod = "POST"
+            urlRequest.httpBody = data
+             
+            return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                .tryMap() { element -> Data in
+                    print(element.response)
+                    guard let httpResponse = element.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                        throw URLError(.badServerResponse)
+                    }
+                    return element.data
+                }
+                .decode(type: RegistBook.self, decoder: JSONDecoder())
+                .eraseToAnyPublisher()
+        }
+    }
 }
