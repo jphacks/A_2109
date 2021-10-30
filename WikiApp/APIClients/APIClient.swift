@@ -52,4 +52,23 @@ enum APIClient {
                 .eraseToAnyPublisher()
         }
     }
+    
+    struct GetSearch {
+        func serch(isbn: String) -> AnyPublisher<Search, Error> {
+            let url = URL(string: "http://localhost:8000/serch?isbn=\(isbn)")!
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+             
+            return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                .tryMap() { element -> Data in
+                    print(element.response)
+                    guard let httpResponse = element.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                        throw URLError(.badServerResponse)
+                    }
+                    return element.data
+                }
+                .decode(type: Search.self, decoder: JSONDecoder())
+                .eraseToAnyPublisher()
+        }
+    }
 }
