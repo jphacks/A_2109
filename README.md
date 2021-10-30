@@ -1,7 +1,6 @@
 # みんなで作る読書wiki 「WikiApp」 
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2021/07/JPHACKS2021_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
-
+![](./top.png)
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
 技術書や数学書などはエンジニアにとって読むべき本でありつつも、内容の難しさや読了するのにかかる時間の膨大さから積読となってしまうケースは多々あります。
