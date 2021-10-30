@@ -25,7 +25,13 @@ struct LoginView: View {
                 VerticalSpacer(height: 32)
                 
                 CommonTextField(text: $viewModel.mail, placeholder: "mail")
-                CommonTextField(text: $viewModel.password, placeholder: "password")
+                SecureField("password", text: $viewModel.password, onCommit: {})
+                    .font(.h2)
+                    .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 80)
+                    .padding(.leading, 16)
+                    .background(Color.formBackground)
+                    .cornerRadius(10)
+                    .padding(.horizontal, 32)
                 
                 VerticalSpacer(height: 48)
                 

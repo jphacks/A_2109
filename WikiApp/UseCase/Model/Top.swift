@@ -8,5 +8,6 @@
 import Foundation
 
 struct Top: Codable {
-    
+    let isbn: String
+    let isPinned: Bool
 }

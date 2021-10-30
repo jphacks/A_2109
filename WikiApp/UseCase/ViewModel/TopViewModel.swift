@@ -9,8 +9,6 @@ import Foundation
 import Combine
 
 final class TopViewModel: ObservableObject {
-    @Published var test: String = ""
-    
     @Published private(set) var loginState: Stateful<String> = .idle
     
     private var anyCancellable = Set<AnyCancellable>()
