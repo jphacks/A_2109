@@ -68,7 +68,7 @@ struct BookMarkListView: View {
                 
                 HStack(alignment: .top, spacing: 24) {
                     Spacer()
-                    BookMarkButton(isBookMark: false)
+                    BookMarkButton(isBookMark: true)
                     LikeButton(isLike: false)
                 }
                 Divider()
@@ -97,7 +97,7 @@ struct LikeListView: View {
                 HStack(alignment: .top, spacing: 24) {
                     Spacer()
                     BookMarkButton(isBookMark: false)
-                    LikeButton(isLike: false)
+                    LikeButton(isLike: true)
                 }
                 Divider()
             }

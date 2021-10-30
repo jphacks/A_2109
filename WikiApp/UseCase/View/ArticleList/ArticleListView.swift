@@ -13,7 +13,7 @@ struct ArticleListView: View {
     @State private var isBookMark = false
     @State private var isLike = false
     
-    let mockText = ["電子デバイスの魅力に引き込まれたこれこそ神の書物　アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
+    let mockText = ["電子デバイスの魅力に引き込まれた\nこれこそ神の書物アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
     
     @State private var isPresented = false
     
@@ -29,11 +29,7 @@ struct ArticleListView: View {
                         .padding(.top, 24)
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(bookInfo.title)
-                            .font(.h3)
-                            .fontWeight(.heavy)
-                        
-                        Text("著者: \(bookInfo.author)")
+                        Text("著者: \n\(bookInfo.author)")
                             .font(.body)
                             .padding(.bottom, 32)
                         
@@ -100,7 +96,7 @@ struct ArticleListView: View {
     
     private func openAmazonProduct(withId id: String) {
         guard let amazonWebURL = URL(string: "https://amzn.to/2MQC8Bz"),
-              let amazonAppURL = URL(string: "com.amazon.mobile.shopping://www.amazon.com/products/\(id)/") else {
+              let amazonAppURL = URL(string: "https://www.amazon.co.jp/%E9%9B%BB%E5%AD%90%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E5%B7%A5%E5%AD%A6-%E7%AC%AC2%E7%89%88-%E5%8F%A4%E5%B7%9D-%E9%9D%99%E4%BA%8C%E9%83%8E/dp/462770562X") else {
                   return
               }
         if UIApplication.shared.canOpenURL(amazonAppURL) {

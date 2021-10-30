@@ -10,6 +10,8 @@ import SwiftUI
 struct TopView: View {
     
     @StateObject private var viewModel = TopViewModel()
+    @State var flag = false
+    let mock = Search(title: "電子デバイス工学", isbn: "9784627705623", author: "古川静二郎/萩田陽一郎/浅野種正", isPinned: true)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -21,23 +23,28 @@ struct TopView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 48) {
-                    Image("nene")
+                    Image("icon1")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Button(action: { flag.toggle()}) {
+                        Image("icon2")
+                            .resizable()
+                            .frame(width: 120, height: 120)
+                            .cornerRadius(10)
+                    }
+                    NavigationLink(destination: ArticleListPageView(bookInfo: mock), isActive: $flag) {
+                        EmptyView()
+                    }
+                    Image("icon3")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Image("icon4")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
-                        .resizable()
-                        .frame(width: 120, height: 120)
-                        .cornerRadius(10)
-                    Image("nene")
+                    Image("AppIcon")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
@@ -59,23 +66,23 @@ struct TopView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .center, spacing: 48) {
-                    Image("nene")
+                    Image("icon1")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Image("icon2")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Image("icon3")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Image("icon4")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
-                    Image("nene")
+                    Image("AppIcon")
                         .resizable()
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
@@ -88,3 +95,4 @@ struct TopView: View {
         }
     }
 }
+
