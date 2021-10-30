@@ -10,3 +10,7 @@ import Foundation
 struct Login: Codable {
     let message: String
 }
+
+struct SignUp: Codable {
+    let message: String
+}

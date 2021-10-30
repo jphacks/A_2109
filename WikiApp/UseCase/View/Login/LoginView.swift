@@ -41,7 +41,7 @@ struct LoginView: View {
                         .foregroundColor(.text)
                 }
                 .fullScreenCover(isPresented: $isPreviewLogin, onDismiss: nil) {
-                    SignInView()
+                    SignUpView()
                 }
             }
         }
