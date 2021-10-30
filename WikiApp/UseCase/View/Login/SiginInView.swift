@@ -11,6 +11,8 @@ struct SignInView: View {
     
     @StateObject private var viewModel = SignInViewModel()
     @State private var isPreviewLogin = false
+    @State private var image: UIImage?
+    @State var showingImagePicker = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -22,7 +24,21 @@ struct SignInView: View {
                     .font(.system(size: 32, weight: .semibold, design: .default))
                     .foregroundColor(.black)
                 
-                VerticalSpacer(height: 32)
+                Button(action: {
+                    showingImagePicker = true
+                }){
+                    if let uiImage = image {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .clipShape(Circle())
+                    }else {
+                        Image("noimage")
+                            .resizable()
+                            .frame(width: 150, height: 150)
+                            .clipShape(Circle())
+                    }
+                }
                 
                 CommonTextField(text: $viewModel.userName, placeholder: "Name")
                 CommonTextField(text: $viewModel.mail, placeholder: "mail")
@@ -45,6 +61,10 @@ struct SignInView: View {
                     LoginView()
                 }
             }
+            .sheet(isPresented: $showingImagePicker) {
+                ImagePicker(sourceType: .photoLibrary, selectedImage: $image)
+            }
         }
     }
 }
+
