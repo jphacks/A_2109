@@ -20,7 +20,7 @@ struct EditArticlePageView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {}){
+                        Button(action: dismiss){
                             Image(symbol: SFSymbol.paperplane)
                         }
                         .foregroundColor(.primary)

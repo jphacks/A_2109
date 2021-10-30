@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct SignInView: View {
+struct SignUpView: View {
     
-    @StateObject private var viewModel = SignInViewModel()
+    @StateObject private var viewModel = SignUpViewModel()
     @State private var isPreviewLogin = false
     @State private var image: UIImage?
     @State var showingImagePicker = false
@@ -33,11 +33,13 @@ struct SignInView: View {
                             .frame(width: 150, height: 150)
                             .clipShape(Circle())
                     }else {
-                        Image("noimage")
-                            .resizable()
+                        Circle()
+                            .foregroundColor(.gray)
                             .frame(width: 150, height: 150)
-                            .clipShape(Circle())
                     }
+                }
+                .sheet(isPresented: $showingImagePicker) {
+                    ImagePicker(sourceType: .photoLibrary, selectedImage: $image)
                 }
                 
                 CommonTextField(text: $viewModel.userName, placeholder: "Name")
@@ -46,7 +48,12 @@ struct SignInView: View {
                 
                 VerticalSpacer(height: 48)
                 
-                CommonButton(title: "SignUp", action: viewModel.login, color: viewModel.readyToCreate ? .primary : .nonLogin)
+                CommonButton(title: "SignUp", action: {
+                    if let imageData = image?.pngData() {
+                        viewModel.imageString = imageData.base64EncodedString()
+                    }
+                    viewModel.signUp()
+                }, color: viewModel.readyToCreate ? .primary : .nonLogin)
                     .padding(.top, 32)
                     .disabled(!viewModel.readyToCreate)
                     .fullScreenCover(isPresented: $viewModel.stateObject, onDismiss: nil) {
@@ -60,9 +67,6 @@ struct SignInView: View {
                 .fullScreenCover(isPresented: $isPreviewLogin, onDismiss: nil) {
                     LoginView()
                 }
-            }
-            .sheet(isPresented: $showingImagePicker) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: $image)
             }
         }
     }

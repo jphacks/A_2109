@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TopPageView: View {
+    
     var body: some View {
         NavigationView {
             TopView()

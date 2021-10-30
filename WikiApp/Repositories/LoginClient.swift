@@ -15,3 +15,14 @@ struct LoginClient {
         APIClient.LoginClient(mail: mail, password: password).login()
     }
 }
+
+struct SignUpClient {
+    let mail: String
+    let password: String
+    let userName: String
+    let imageString: String
+    
+    func signUp() -> AnyPublisher<SignUp, Error> {
+        APIClient.SignUpClient(mail: mail, password: password, userName: userName, imageString: imageString).signUp()
+    }
+}
