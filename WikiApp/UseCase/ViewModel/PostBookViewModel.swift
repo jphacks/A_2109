@@ -5,15 +5,6 @@
 //  Created by tiking on 2021/10/30.
 //
 
-import Combine
-
-//
-//  SearchViewModel.swift
-//  WikiApp
-//
-//  Created by tiking on 2021/10/30.
-//
-
 import Foundation
 import Combine
 
@@ -66,7 +57,4 @@ final class PostBookViewModel: ObservableObject {
             }
             ).store(in: &anyCancellable)
     }
-    
 }
-
-

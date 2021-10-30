@@ -13,6 +13,8 @@ struct ArticleListView: View {
     @State private var isBookMark = false
     @State private var isLike = false
     
+    @StateObject private var viewModel = ArticleListViewModel()
+    
     let mockText = ["電子デバイスの魅力に引き込まれた\nこれこそ神の書物アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
     
     @State private var isPresented = false
@@ -54,24 +56,35 @@ struct ArticleListView: View {
                 
                 Divider()
                 
-                ScrollView {
-                    ForEach(mockText, id: \.self) { text in
-                        Text(text)
-                            .padding(.bottom, 4)
-                        
-                        HStack(alignment: .top, spacing: 24) {
-                            Spacer()
-                            BookMarkButton(isBookMark: false)
-                            LikeButton(isLike: false)
+                switch viewModel.articles {
+                case .idle, .loading:
+                    ProgressView()
+                case let .loaded(articles):
+                    ScrollView {
+                        ForEach(articles.articles) { article in
+                            Text(article.context)
+                                .padding(.bottom, 4)
+                            
+                            HStack(alignment: .top, spacing: 24) {
+                                Spacer()
+                                BookMarkButton(isBookMark: article.isBookmarked)
+                                LikeButton(isLike: article.isLiked)
+                            }
+                            
+                            Divider()
                         }
-                        
-                        Divider()
                     }
+                    .background(Color.background)
+                    
+                case .failed:
+                    Text("記事がありませんでした🙇‍♂️")
+                        .font(.serchText)
+                        .padding(.vertical, 32)
                 }
-                .background(Color.background)
                 
                 Spacer()
             }
+            
             VStack(alignment: .center, spacing: 0) {
                 Spacer()
                 HStack(alignment: .top, spacing: 0) {
@@ -91,6 +104,9 @@ struct ArticleListView: View {
                     }
                 }
             }
+        }
+        .onFirstAppear {
+            viewModel.getArticleList(bookID: bookInfo.id)
         }
     }
     

@@ -12,6 +12,17 @@ struct Search: Codable {
     let isbn: String
     let author: String
     let isPinned: Bool
+    let imageLink: String
     let amazonLink: String
-    let ID: String
+    let id: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case isbn
+        case author
+        case id = "ID"
+        case isPinned
+        case imageLink
+        case amazonLink
+      }
 }
