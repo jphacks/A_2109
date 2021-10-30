@@ -48,8 +48,7 @@ struct SearchView: View {
                     .padding(.vertical, 32)
                 
                 Button(action: { isPresented.toggle() }) {
-                    Image("nene")
-                        .resizable()
+                    URLImageView(viewModel: .init(url: "https://cover.openbd.jp/\(viewModel.isbn).jpg"))
                         .frame(width: 120, height: 120)
                         .cornerRadius(10)
                 }

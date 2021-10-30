@@ -17,8 +17,6 @@ struct ArticleListView: View {
     
     let bookInfo: Search
     
-    private let name = "山下陽平"
-    
     var body: some View {
         ZStack(alignment: .center) {
             VStack(alignment: .center, spacing: 0) {
@@ -30,28 +28,19 @@ struct ArticleListView: View {
                         .padding(.top, 24)
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Webを支える技術")
+                        Text(bookInfo.title)
                             .font(.h3)
                             .fontWeight(.heavy)
                         
-                        Text("著者: \(name)")
+                        Text("著者: \(bookInfo.author)")
                             .font(.body)
                             .padding(.bottom, 32)
                         
                         HStack(alignment: .center, spacing: 16) {
-                            Button(action: { isPined.toggle() }){
-                                ZStack {
-                                    Image(symbol: SFSymbol.bookmark)
-                                        .foregroundColor(.primary)
-                                        .isHidden(isPined)
-                                    
-                                    Image(symbol: SFSymbol.bookmarkFill)
-                                        .foregroundColor(.primary)
-                                        .isHidden(!isPined)
-                                }
-                            }
                             
-                            Button(action: {openAmazonProduct(withId: "4774142042")}){
+                            PinedButton(isPined: bookInfo.isPinned)
+                            
+                            Button(action: {openAmazonProduct(withId: bookInfo.isbn)}){
                                 Image("amazon")
                             }
                         }
@@ -110,15 +99,33 @@ struct ArticleListView: View {
     }
     
     private func openAmazonProduct(withId id: String) {
-       guard let amazonWebURL = URL(string: "https://amzn.to/2MQC8Bz"),
-             let amazonAppURL = URL(string: "com.amazon.mobile.shopping://www.amazon.com/products/\(id)/") else {
-                 return
-       }
-       if UIApplication.shared.canOpenURL(amazonAppURL) {
-                UIApplication.shared.open(amazonAppURL, options: [:], completionHandler: nil)
-       }
-       else if UIApplication.shared.canOpenURL(amazonWebURL) {
-                UIApplication.shared.open(amazonWebURL, options: [:], completionHandler: nil)
-       }
+        guard let amazonWebURL = URL(string: "https://amzn.to/2MQC8Bz"),
+              let amazonAppURL = URL(string: "com.amazon.mobile.shopping://www.amazon.com/products/\(id)/") else {
+                  return
+              }
+        if UIApplication.shared.canOpenURL(amazonAppURL) {
+            UIApplication.shared.open(amazonAppURL, options: [:], completionHandler: nil)
+        }
+        else if UIApplication.shared.canOpenURL(amazonWebURL) {
+            UIApplication.shared.open(amazonWebURL, options: [:], completionHandler: nil)
+        }
+    }
+    
+    private struct PinedButton: View {
+        @State var isPined: Bool
+        
+        var body: some View {
+            Button(action: { isPined.toggle() }){
+                ZStack {
+                    Image(symbol: SFSymbol.bookmark)
+                        .foregroundColor(.primary)
+                        .isHidden(isPined)
+                    
+                    Image(symbol: SFSymbol.bookmarkFill)
+                        .foregroundColor(.primary)
+                        .isHidden(!isPined)
+                }
+            }
+        }
     }
 }

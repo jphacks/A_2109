@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class SearchViewModel: ObservableObject {
+final class SearchViewModel: ObservableObject {
     @Published var isbn: String = ""
     @Published var loading: Bool = false
     
@@ -17,6 +17,26 @@ class SearchViewModel: ObservableObject {
     private var anyCancellable = Set<AnyCancellable>()
     
     func getSearch() {
+//        Publishers.Zip(SearchClient(isbn: isbn).search(), BookClient(isbn: isbn).search())
+//            .handleEvents(receiveSubscription: { [weak self] _ in
+//                self?.book = .loading
+//            })
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: { [weak self] completion in
+//                switch completion {
+//                case .failure(let error):
+//                    print(error)
+//                    self?.book = .failed(error)
+//                case .finished: print("finish")
+//                }
+//            }, receiveValue: { [weak self] (state, summary) in
+//                guard let self = self else { return }
+//                self.book = .loaded(state)
+//                self.summary = .loaded(summary)
+//
+//            })
+//            .store(in: &anyCancellable)
+        
         SearchClient(isbn: isbn).search()
             .handleEvents(receiveSubscription: { [weak self] _ in
                 self?.book = .loading

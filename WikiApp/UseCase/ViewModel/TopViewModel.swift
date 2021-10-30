@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class TopViewModel: ObservableObject {
+final class TopViewModel: ObservableObject {
     @Published var test: String = ""
     
     @Published private(set) var loginState: Stateful<String> = .idle

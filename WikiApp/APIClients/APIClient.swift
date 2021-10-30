@@ -55,7 +55,7 @@ enum APIClient {
     
     struct GetSearch {
         func serch(isbn: String) -> AnyPublisher<Search, Error> {
-            let url = URL(string: "http://localhost:8000/serch?isbn=\(isbn)")!
+            let url = URL(string: "http://localhost:8000/search?isbn=\(isbn)")!
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"
              
@@ -68,6 +68,25 @@ enum APIClient {
                     return element.data
                 }
                 .decode(type: Search.self, decoder: JSONDecoder())
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    struct GetBookIcon {
+        func getImage(isbn: String) -> AnyPublisher<[Book], Error> {
+            let url = URL(string: "https://api.openbd.jp/v1/get?isbn=\(isbn)")!
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "GET"
+             
+            return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                .tryMap() { element -> Data in
+                    print(element.response)
+                    guard let httpResponse = element.response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                        throw URLError(.badServerResponse)
+                    }
+                    return element.data
+                }
+                .decode(type: [Book].self, decoder: JSONDecoder())
                 .eraseToAnyPublisher()
         }
     }
