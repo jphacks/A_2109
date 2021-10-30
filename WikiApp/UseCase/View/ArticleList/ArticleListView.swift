@@ -15,6 +15,8 @@ struct ArticleListView: View {
     
     @State private var isPresented = false
     
+    let bookInfo: Search
+    
     private let name = "山下陽平"
     
     var body: some View {
