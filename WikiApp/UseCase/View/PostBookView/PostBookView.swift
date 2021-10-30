@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PostBookView: View{
     @State var searchText = ""
-    @State var loading = true
+    @State private var loading = true
+    @State private var isShowCamera = false
     
     var body: some View {
         VStack(alignment: .center) {
@@ -28,10 +29,13 @@ struct PostBookView: View{
                         .padding(.trailing, 32)
                 }
             }
-            Button(action: {}){
+            Button(action: { isShowCamera.toggle() }){
                 Text("カメラから入力")
                     .fontWeight(.thin)
                     .padding(.bottom, 50)
+            }
+            .fullScreenCover(isPresented: $isShowCamera, onDismiss: nil) {
+                CameraView(isActive: $isShowCamera)
             }
                 Text("検索結果")
                     .padding(32)

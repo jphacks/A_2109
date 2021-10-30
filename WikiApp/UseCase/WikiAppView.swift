@@ -25,7 +25,7 @@ struct WikiAppView: View {
                 }
                 .tag(TabController.Tab.search)
             
-            TopPageView()
+            PostBookPageView()
                 .tabItem {
                     Label("新規登録", systemImage: SFSymbol.edit.rawValue)
                 }
