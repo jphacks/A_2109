@@ -48,6 +48,11 @@ enum SFSymbol: String {
     /// 􀈊
     case pencil = "pencil"
     
+    /// 􀋭
+    case eye = "eye"
+
+    /// 􀋯
+    case cloeEye = "eye.slash"
 }
 
 extension Image {

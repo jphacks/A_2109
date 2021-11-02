@@ -15,8 +15,6 @@ struct ArticleListView: View {
     
     @StateObject private var viewModel = ArticleListViewModel()
     
-    let mockText = ["電子デバイスの魅力に引き込まれた\nこれこそ神の書物アーメン", "CMOOSの境地に達した","softwareの基礎がここにあり","テストの重要性に気付かされた","仕事に込める生き様に感化","気づきの重要性を学んだ",]
-    
     @State private var isPresented = false
     
     let bookInfo: Search
@@ -39,7 +37,7 @@ struct ArticleListView: View {
                             
                             PinedButton(isPined: bookInfo.isPinned)
                             
-                            Button(action: {openAmazonProduct(withId: bookInfo.isbn)}){
+                            Button(action: {openAmazonProduct(withId: bookInfo.amazonLink)}){
                                 Image("amazon")
                             }
                         }
@@ -59,6 +57,8 @@ struct ArticleListView: View {
                 switch viewModel.articles {
                 case .idle, .loading:
                     ProgressView()
+                        .padding(.top, 32)
+                    
                 case let .loaded(articles):
                     ScrollView {
                         ForEach(articles.articles) { article in
@@ -77,7 +77,7 @@ struct ArticleListView: View {
                     .background(Color.background)
                     
                 case .failed:
-                    Text("記事がありませんでした🙇‍♂️")
+                    Text("記事の取得に失敗しました🙇‍♂️")
                         .font(.serchText)
                         .padding(.vertical, 32)
                 }
@@ -110,9 +110,9 @@ struct ArticleListView: View {
         }
     }
     
-    private func openAmazonProduct(withId id: String) {
+    private func openAmazonProduct(withId link: String) {
         guard let amazonWebURL = URL(string: "https://amzn.to/2MQC8Bz"),
-              let amazonAppURL = URL(string: "https://www.amazon.co.jp/%E9%9B%BB%E5%AD%90%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E5%B7%A5%E5%AD%A6-%E7%AC%AC2%E7%89%88-%E5%8F%A4%E5%B7%9D-%E9%9D%99%E4%BA%8C%E9%83%8E/dp/462770562X") else {
+              let amazonAppURL = URL(string: link) else {
                   return
               }
         if UIApplication.shared.canOpenURL(amazonAppURL) {

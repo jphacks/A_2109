@@ -10,6 +10,6 @@ import Combine
 struct BookClient {
     let isbn: String
     func search() -> AnyPublisher<[Book], Error> {
-        APIClient.GetBookIcon().getImage(isbn: isbn)
+        GetAPIClient.GetBookIcon().getImage(isbn: isbn)
     }
 }

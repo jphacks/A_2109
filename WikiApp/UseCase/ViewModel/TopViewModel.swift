@@ -26,10 +26,7 @@ final class TopViewModel: ObservableObject {
                     self?.loginState = .failed(error)
                 case .finished: print("finish")
                 }
-            }, receiveValue: { [weak self] state in
-                guard let self = self else { return }
-                print(state)
-            }
+            }, receiveValue: { _ in }
             ).store(in: &anyCancellable)
     }
 }

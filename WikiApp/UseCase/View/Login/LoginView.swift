@@ -10,7 +10,8 @@ import SwiftUI
 struct LoginView: View {
     
     @StateObject private var viewModel = LoginViewModel()
-    @State private var isPreviewLogin = false
+    @State private var isPreviewSignUp = false
+    @State private var isPreviewPassword = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -25,13 +26,36 @@ struct LoginView: View {
                 VerticalSpacer(height: 32)
                 
                 CommonTextField(text: $viewModel.mail, placeholder: "mail")
-                SecureField("password", text: $viewModel.password, onCommit: {})
-                    .font(.h2)
-                    .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 80)
-                    .padding(.leading, 16)
-                    .background(Color.formBackground)
                     .cornerRadius(10)
                     .padding(.horizontal, 32)
+                
+                HStack(alignment: .center, spacing: 0) {
+                    
+                    if isPreviewPassword {
+                        CommonTextField(text: $viewModel.password, placeholder: "password")
+                    } else {
+                        SecureField("password", text: $viewModel.password, onCommit: {})
+                            .font(.h2)
+                            .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 80)
+                            .padding(.leading, 16)
+                            .background(Color.formBackground)
+                            .disableAutocorrection(isPreviewPassword)
+                    }
+                    Text(viewModel.password.count.description)
+                        .foregroundColor(viewModel.password.count >= 8 ? .formText : .red)
+                        .padding(.trailing, 8)
+                        .padding(.top, 16)
+                    
+                    Button(action: { isPreviewPassword.toggle() }) {
+                        Image(symbol: isPreviewPassword ? SFSymbol.eye : SFSymbol.cloeEye)
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.trailing, 4)
+                    .padding(.top, 16)
+                }
+                .background(Color.formBackground)
+                .cornerRadius(10)
+                .padding(.horizontal, 32)
                 
                 VerticalSpacer(height: 48)
                 
@@ -42,11 +66,11 @@ struct LoginView: View {
                         WikiAppView()
                     }
                 
-                Button(action: { isPreviewLogin.toggle() }) {
+                Button(action: { isPreviewSignUp.toggle() }) {
                     Text("新規登録はこちら")
                         .foregroundColor(.text)
                 }
-                .fullScreenCover(isPresented: $isPreviewLogin, onDismiss: nil) {
+                .fullScreenCover(isPresented: $isPreviewSignUp, onDismiss: nil) {
                     SignUpView()
                 }
             }

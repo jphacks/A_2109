@@ -10,6 +10,6 @@ import Combine
 struct SearchClient {
     let isbn: String
     func search() -> AnyPublisher<Search, Error> {
-        APIClient.GetSearch().serch(isbn: isbn)
+        GetAPIClient.GetSearch().serch(isbn: isbn)
     }
 }

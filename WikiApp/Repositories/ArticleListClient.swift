@@ -11,6 +11,6 @@ struct ArticlelistClient {
     let bookID: Int
     
     func getArticleList() -> AnyPublisher<ArticleList, Error> {
-        APIClient.GetArticleList(bookID: bookID).getArticlelist()
+        GetAPIClient.GetArticleList(bookID: bookID).getArticlelist()
     }
 }

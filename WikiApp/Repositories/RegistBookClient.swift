@@ -10,7 +10,7 @@ import Combine
 struct RegistBookClient {
     let register: Book
     func registBook() -> AnyPublisher<RegistBook, Error> {
-        APIClient.RegisterBook(register: register).registBook()
+        PostAPIClient.RegisterBook(register: register).registBook()
     }
 }
 
