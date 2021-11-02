@@ -9,6 +9,6 @@ import Combine
 
 struct TopClient {
     func top() -> AnyPublisher<String, Error> {
-        APIClient.GetTop().getTop()
+        GetAPIClient.GetTop().getTop()
     }
 }

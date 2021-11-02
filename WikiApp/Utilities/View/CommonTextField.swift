@@ -17,7 +17,5 @@ struct CommonTextField: View {
             .frame(idealWidth: 100 ,maxWidth: .infinity, idealHeight: 60, maxHeight: 80)
             .padding(.leading, 16)
             .background(Color.formBackground)
-            .cornerRadius(10)
-            .padding(.horizontal, 32)
     }
 }

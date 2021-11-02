@@ -25,7 +25,7 @@ final class LoginViewModel: ObservableObject {
                 let mail = $0.0
                 let password = $0.1
                 
-                guard mail.count > 0, (password.count != 0) else { return false}
+                guard mail.count > 0, password.count > 8 else { return false}
                 return true
             }
             .assign(to: \.readyToCreate, on: self)
